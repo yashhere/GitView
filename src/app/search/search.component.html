@@ -1,0 +1,41 @@
+<div class="ui centered aligned grid">
+
+  <div class="float container large ui image img">
+    <img src="http://www.aha.io/assets/github.7433692cabbfa132f34adb034e7909fa.png" alt="...">
+  </div>
+
+  <div class="ui container three column grid basic segment center  aligned">
+      <div class="column">
+        <div class="ui">
+          <!--<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="ui form error">
+            <pre>{{f.value | json}}</pre>
+            <div class="ui action input searchBox">
+              <input ngModel name="name" #search="ngModel" type="text" placeholder="Search..." required>
+              <div *ngIf="search.errors?.required && search.touched" class="ui message error">Name is required</div>
+              <button class="ui button submit" type="submit" [disabled]="!f.valid">Search</button>
+            </div>
+          </form>-->
+          <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)" class="ui form error">
+            <div class="field">
+              <label>Search GitHub Username...</label>
+              <div class="ui labeled input">
+                <div class="ui label">
+                  @
+                </div>
+                <input [(ngModel)]="username" name="search" #search="ngModel" type="text" placeholder="enter your username..." required minlength="4">
+              </div>
+
+              <!--<pre>{{f.form.controls.search?.invalid && (f.form.controls.search?.dirty || f.form.controls.search?.touched)}}</pre>
+              <pre>{{f.form.controls.search?.valid && (f.form.controls.search?.dirty || f.form.controls.search?.touched)}}</pre>-->
+              <div class="ui message error" *ngIf="f.form.controls.search?.invalid && (f.form.controls.search?.dirty || f.form.controls.search?.touched)">
+                <div class="header">Invalid Username</div>
+                <!--<p>Please type in a valid GitHub Username.</p>-->
+              </div>
+            </div>
+            <button class="ui submit button" [disabled]="!f.valid">Submit</button>
+          </form>
+        </div>
+    </div>
+  </div>
+
+</div>
