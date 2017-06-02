@@ -5,7 +5,108 @@
     </div>
   </div>
 </div>
-
 <ng-template #data>
-  <pre ui segment prettyprint>{{userDetail | json}}</pre>
+  <div class="ui relaxed stackable column grid">
+    <div class="row vetical aligned outerbox">
+      <div class="six wide column centered aligned">
+        <div class="ui segment box">
+          <div class="ui divided items">
+            <div class="item">
+              <div class="image">
+                <img src="https://avatars0.githubusercontent.com/u/6687859?v=3" alt="...">
+              </div>
+              <div class="content">
+                <a class="header" href="{{details.userDetail?.html_url}}">@{{details.userDetail?.login}}</a>
+                <div class="meta">
+                  <span class="cinema">{{details.userDetail?.bio != null ? details.userDetail?.bio : ""}}</span>
+                </div>
+                <div class="description">
+                  <p>{{details.userDetail?.location != null ? details.userDetail?.location : ""}}</p>
+                  <p>{{details.userDetail?.company != null ? details.userDetail?.company : ""}}</p>
+                  <p><a href="{{details.userDetail?.blog}}" target="_blank">{{details.userDetail?.blog}}</a></p>
+                </div>
+                <div class="extra">
+                  <div class="ui label" style="color:black"><a href="https://github.com/{{details.userDetail?.login}}" target="_blank">Follow @{{details.userDetail?.login}}</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="four column row outerbox">
+      <div class="wide column">
+        <div class="ui segment box">
+          <div class="ui divided items">
+            <div class="item">
+              <h2 class="ui icon header center aligned">
+                <i class="folder open outline icon"></i>
+                <div class="content">
+                  Public Repositories
+                  <div class="ui label">
+                    <h2>{{details.userDetail?.public_repos}}</h2>
+                  </div>
+                  <div class="sub header"><a>Browse repositories</a></div>
+                </div>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wide column">
+        <div class="ui segment box">
+          <div class="ui divided items">
+            <div class="item">
+              <h2 class="ui icon header center aligned">
+                <i class="users icon"></i>
+                <div class="content">
+                  Followers
+                  <div class="ui label">
+                    <h2>{{details.userDetail?.followers}}</h2>
+                  </div>
+                  <div class="sub header detail"><a>See whom {{details.userDetail?.login}} following and follow them...</a></div>
+                </div>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wide column">
+        <div class="ui segment box">
+          <div class="ui divided items">
+            <div class="item">
+              <h2 class="ui icon header center aligned">
+                <i class="unhide icon"></i>
+                <div class="content">
+                  Following
+                  <div class="ui label">
+                    <h2>{{details.userDetail?.following}}</h2>
+                  </div>
+                  <div class="sub header"><a>See whom {{details.userDetail?.login}} follows.</a></div>
+                </div>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wide column">
+        <div class="ui segment box">
+          <div class="ui divided items">
+            <div class="item">
+              <h2 class="ui icon header center aligned">
+                <i class="folder open outline icon"></i>
+                <div class="content">
+                  Starred Repos
+                  <div class="ui label">
+                    <h2>{{details.userDetail?.public_repos}}</h2>
+                  </div>
+                  <div class="sub header"><a>Browse repositories</a></div>
+                </div>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-template>

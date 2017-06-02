@@ -24,6 +24,7 @@
     "core-js": "^2.4.1",
     "ng2-semantic-ui": "^0.7.0",
     "rxjs": "^5.1.0",
+    "semantic-ui-icon": "^2.2.10",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
