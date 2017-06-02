@@ -1,0 +1,11 @@
+<div *ngIf="isLoading;else data">
+  <div class="ui">
+    <div class="ui active inverted dimmer">
+      <div class="ui massive text loader">Fetching User Profile of <a href="https://github.com/{{username}}" target="_blank">@{{username}}</a>...</div>
+    </div>
+  </div>
+</div>
+
+<ng-template #data>
+  <pre ui segment prettyprint>{{userDetail | json}}</pre>
+</ng-template>
