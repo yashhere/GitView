@@ -1,106 +1,89 @@
 <div *ngIf="isLoading;else data">
   <div class="ui">
     <div class="ui active inverted dimmer">
-      <div class="ui massive text loader">Fetching User Profile of <a href="https://github.com/{{username}}" target="_blank">@{{username}}</a>...</div>
+      <div class="ui massive text loader">Fetching User Profile of <a href="https://github.com/{{username}}" target="_blank">@{{username}}...</a></div>
     </div>
   </div>
 </div>
+
 <ng-template #data>
   <div class="ui relaxed stackable column grid">
-    <div class="row vetical aligned outerbox">
-      <div class="six wide column centered aligned">
-        <div class="ui segment box">
+    <div class="six wide column">
+      <div class="row component-left">
+        <div class="ui segment box outerbox ">
           <div class="ui divided items">
             <div class="item">
               <div class="image">
-                <img src="https://avatars0.githubusercontent.com/u/6687859?v=3" alt="...">
+                <img src="{{userData.userDetail?.avatar_url}}" alt="{{userData.userDetail?.login}}">
               </div>
               <div class="content">
-                <a class="header" href="{{details.userDetail?.html_url}}">@{{details.userDetail?.login}}</a>
+                <a class="header" href="{{userData.userDetail?.html_url}}">@{{userData.userDetail?.login}}</a>
                 <div class="meta">
-                  <span class="cinema">{{details.userDetail?.bio != null ? details.userDetail?.bio : ""}}</span>
+                  <span class="cinema">{{userData.userDetail?.bio != null ? userData.userDetail?.bio : ""}}</span>
                 </div>
                 <div class="description">
-                  <p>{{details.userDetail?.location != null ? details.userDetail?.location : ""}}</p>
-                  <p>{{details.userDetail?.company != null ? details.userDetail?.company : ""}}</p>
-                  <p><a href="{{details.userDetail?.blog}}" target="_blank">{{details.userDetail?.blog}}</a></p>
+                  <p>{{userData.userDetail?.location != null ? userData.userDetail?.location : ""}}</p>
+                  <p>{{userData.userDetail?.company != null ? userData.userDetail?.company : ""}}</p>
+                  <p><a href="{{userData.userDetail?.blog}}" target="_blank">{{userData.userDetail?.blog}}</a></p>
                 </div>
                 <div class="extra">
-                  <div class="ui label" style="color:black"><a href="https://github.com/{{details.userDetail?.login}}" target="_blank">Follow @{{details.userDetail?.login}}</a></div>
+                  <div class="ui label" style="color:black"><a href="https://github.com/{{userData.userDetail?.login}}" target="_blank">Follow @{{userData.userDetail?.login}}</a></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="four column row outerbox">
-      <div class="wide column">
-        <div class="ui segment box">
+        <div class="six column outerbox">
           <div class="ui divided items">
-            <div class="item">
-              <h2 class="ui icon header center aligned">
-                <i class="folder open outline icon"></i>
+            <div class="item" (click)="showDetails('repos')" style="cursor: pointer">
+              <h2 class="ui icon header">
                 <div class="content">
                   Public Repositories
                   <div class="ui label">
-                    <h2>{{details.userDetail?.public_repos}}</h2>
+                    <h2>{{userData.userDetail?.public_repos}}</h2>
                   </div>
-                  <div class="sub header"><a>Browse repositories</a></div>
                 </div>
               </h2>
             </div>
           </div>
         </div>
-      </div>
-      <div class="wide column">
-        <div class="ui segment box">
+        <div class="six column outerbox">
           <div class="ui divided items">
-            <div class="item">
-              <h2 class="ui icon header center aligned">
-                <i class="users icon"></i>
-                <div class="content">
-                  Followers
-                  <div class="ui label">
-                    <h2>{{details.userDetail?.followers}}</h2>
-                  </div>
-                  <div class="sub header detail"><a>See whom {{details.userDetail?.login}} following and follow them...</a></div>
-                </div>
-              </h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="wide column">
-        <div class="ui segment box">
-          <div class="ui divided items">
-            <div class="item">
-              <h2 class="ui icon header center aligned">
-                <i class="unhide icon"></i>
+            <div class="item" (click)="showDetails('following')">
+              <h2 class="ui icon header">
                 <div class="content">
                   Following
                   <div class="ui label">
-                    <h2>{{details.userDetail?.following}}</h2>
+                    <h2>{{userData.userDetail?.following}}</h2>
                   </div>
-                  <div class="sub header"><a>See whom {{details.userDetail?.login}} follows.</a></div>
                 </div>
               </h2>
             </div>
           </div>
         </div>
-      </div>
-      <div class="wide column">
-        <div class="ui segment box">
+        <div class="six column outerbox">
           <div class="ui divided items">
-            <div class="item">
-              <h2 class="ui icon header center aligned">
-                <i class="folder open outline icon"></i>
+            <div class="item"  (click)="showDetails('followers')">
+              <h2 class="ui icon header">
+                <div class="content">
+                  Followers
+                  <div class="ui label">
+                    <h2>{{userData.userDetail?.followers}}</h2>
+                  </div>
+                </div>
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="six column outerbox">
+          <div class="ui divided items">
+            <div class="item" (click)="showDetails('stars')">
+              <h2 class="ui icon header">
                 <div class="content">
                   Starred Repos
                   <div class="ui label">
-                    <h2>{{details.userDetail?.public_repos}}</h2>
+                    <h2>Stars</h2>
                   </div>
-                  <div class="sub header"><a>Browse repositories</a></div>
                 </div>
               </h2>
             </div>
@@ -108,5 +91,47 @@
         </div>
       </div>
     </div>
+
+    <div class="ten wide column" style="border:1px solid red">
+      <pre *ngIf="panelDisplay.showDefault">
+      <h1>Default View</h1>
+      </pre>
+      <pre *ngIf="panelDisplay.showRepos"><h1>Repos</h1> {{userData.repos | json}}</pre>
+      <pre  *ngIf="panelDisplay.showFollowers"><h1>Followers</h1>
+      {{userData.followers | json }}
+      </pre>
+      <pre  *ngIf="panelDisplay.showFollowing"><h1>Following</h1>
+      {{userData.followers | json }}
+      </pre>
+      <pre  *ngIf="panelDisplay.showStars"><h1>Stars</h1>
+      {{userData.stars | json }}
+      </pre>
+    </div>
+
   </div>
+
 </ng-template>
+
+<!--<ng-template #data>
+  <div (click)="showDetails('repos')"><pre>Public Repos: {{userData.userDetail.public_repos}}</pre></div>
+  <div (click)="showDetails('followers')"><pre>Followers: {{userData.userDetail.followers}}</pre></div>
+  <div (click)="showDetails('following')"><pre>Following: {{userData.userDetail.following}}</pre></div>
+  <div (click)="showDetails('stars')"><pre>Stars: {{userData.userDetail.starred_url}}</pre></div>
+
+  <div>
+    <pre *ngIf="panelDisplay.showDefault">
+    <h1>Default View</h1>
+    </pre>
+    <pre *ngIf="panelDisplay.showRepos"><h1>Repos</h1> {{userData.repos | json}}</pre>
+    <pre  *ngIf="panelDisplay.showFollowers"><h1>Followers</h1>
+    {{userData.followers | json }}
+    </pre>
+    <pre  *ngIf="panelDisplay.showFollowing"><h1>Following</h1>
+    {{userData.followers | json }}
+    </pre>
+    <pre  *ngIf="panelDisplay.showStars"><h1>Stars</h1>
+    {{userData.stars | json }}
+    </pre>
+  </div>
+
+</ng-template>-->

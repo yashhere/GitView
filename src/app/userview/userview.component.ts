@@ -13,7 +13,7 @@ import 'rxjs/add/operator/switchMap';
 
 export class UserViewComponent implements OnInit {
 
-  details;
+  userData;
   // userDetail = {
   //   'login': 'yash2696',
   //   'id': 13733968,
@@ -48,7 +48,15 @@ export class UserViewComponent implements OnInit {
   // };
 
   username;
-  isLoading: Boolean = false;
+  isLoading: Boolean = true;
+  panelDisplay = {
+    showPanel : true,
+    showDefault : true,
+    showRepos : false,
+    showFollowers : false,
+    showFollowing : false,
+    showStars : false,
+  };
 
   constructor(private _githubService: GithubService, private _searchComponent: SearchComponent, private _route: ActivatedRoute, ) {
     this.username = this.getUserName()['source']['value']['id'];
@@ -58,9 +66,9 @@ export class UserViewComponent implements OnInit {
   ngOnInit() {
     this.getUserName()
       .switchMap(id => this._githubService.getUserDetail(id))
-      .subscribe(details => {
-        this.details = details;
-        console.log(this.details);
+      .subscribe(userData => {
+        this.userData = userData;
+        console.log(this.userData.userDetail.login);
         this.isLoading = false;
       },
       null,
@@ -72,5 +80,23 @@ export class UserViewComponent implements OnInit {
   getUserName() {
     return this._route.params
       .map(params => params['id']);
+  }
+
+  showDetails(str) {
+    this.panelDisplay.showDefault = false;
+    this.panelDisplay.showRepos = false;
+    this.panelDisplay.showFollowers = false;
+    this.panelDisplay.showFollowing = false;
+    this.panelDisplay.showStars = false;
+
+    if (str === 'repos') {
+      this.panelDisplay.showRepos = true;
+    } else if (str === 'following') {
+      this.panelDisplay.showFollowing = true;
+    } else if (str === 'followers') {
+      this.panelDisplay.showFollowers = true;
+    } else if (str === 'stars') {
+      this.panelDisplay.showStars = true;
+    }
   }
 }

@@ -24,7 +24,7 @@ export class GithubService {
     this._following = this._url + '/following';
     this._starred_url = this._url + '/starred';
 
-    console.log(this._url, this._repos, this._followers, this._following, this._starred_url);
+    // console.log(this._url, this._repos, this._followers, this._following, this._starred_url);
 
     const user = this._http.get(this._url)
       .map(res => res.json());
