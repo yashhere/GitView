@@ -68,7 +68,7 @@ export class UserViewComponent implements OnInit {
       .switchMap(id => this._githubService.getUserDetail(id))
       .subscribe(userData => {
         this.userData = userData;
-        console.log(this.userData.userDetail.login);
+        console.log(this.userData);
         this.isLoading = false;
       },
       null,

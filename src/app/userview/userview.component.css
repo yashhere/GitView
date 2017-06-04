@@ -7,6 +7,14 @@
   height: 100%;
 }
 
+a {
+  color: black;
+}
+
+a:hover {
+  color: #4183c4;
+}
+
 /*.image {
   max-width: 50px;
   max-height: 50px;
@@ -17,10 +25,10 @@
   max-width: 70%;
   border-radius: 100%;
 }*/
-
+/*
 .component-left {
   margin-left: 3%;
   margin-top: 3%;
   padding: 2%;
-}
+}*/
 
