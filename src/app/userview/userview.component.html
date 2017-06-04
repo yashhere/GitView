@@ -121,6 +121,11 @@
       </div>
     </div>
 
+    <h4 class="ui horizontal divider header">
+      <i class="tag icon"></i>
+      Recent Activity
+    </h4>
+
     <div class="row">
       <div class="twelve wide column centered aligned">
         <sui-accordion class="segments ui aligned centered six wide column grid styled fluid">
@@ -136,5 +141,26 @@
         </sui-accordion>
       </div>
     </div>
+
+    <h4 class="ui horizontal divider header">
+      <i class="tag icon"></i>
+      Watchlist
+    </h4>
+
+    <div class="row">
+      <div class="twelve wide column centered aligned row ui grid">
+        <div class="" *ngFor="let sub of userData.subs" class="centered aligned">
+          <a href="{{sub.html_url}}">
+            <div class="tab">{{sub.name}}</div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <h4 class="ui horizontal divider header">
+      Coded with
+      <i class="red empty heart icon"></i>by Yash Agarwal
+    </h4>
   </div>
 </ng-template>
