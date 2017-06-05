@@ -134,8 +134,9 @@
                 <i class="tasks icon"></i>
                 See {{userData.userDetail?.login}}'s recent activity
             </div>
-            <div content class="ui segment" *ngFor="let feed of userData.feed.items">
+            <div content class="ui" *ngFor="let feed of userData.feed.items">
               <a href="{{feed.link}}" target="_blank">{{feed.title}}</a>
+              <div class="ui divider"></div>
             </div>
           </sui-accordion-panel>
         </sui-accordion>
@@ -162,5 +163,14 @@
       Coded with
       <i class="red empty heart icon"></i>by Yash Agarwal
     </h4>
+
+    <div class="row">
+      <div class="twelve wide column centered aligned row ui grid">
+        <a href="https://facebook.com/theyashagarwal"><i class="red big facebook f icon"></i></a>
+        <a href="https://github.com/yash2696"><i class="red big github icon"></i></a>
+        <a href="mailto:yashagarwaljpr@gmail.com"><i class="red big mail icon"></i></a>
+        <a href="https://linkedin.com/in/theyashagarwal"><i class="red big linkedin icon"></i></a>
+      </div>
+    </div>
   </div>
 </ng-template>
