@@ -12,6 +12,7 @@ import { RepoComponent } from './repo/repo.component';
 import { FollowerComponent } from './follower/follower.component';
 import { FollowingComponent } from './following/following.component';
 import { StarComponent } from './star/star.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { StarComponent } from './star/star.component';
     HttpModule,
     SuiModule,
     RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

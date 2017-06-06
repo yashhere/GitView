@@ -19,6 +19,12 @@ export class GithubService {
 
   }
 
+  getUser = function (userName) {
+    this._url = 'https://api.github.com/users/' + userName;
+    return this._http.get(this._url)
+      .map(res => res.json());
+  };
+
   getUserDetail = function (userName) {
     this._url = 'https://api.github.com/users/' + userName;
     // this._repos = this._url + '/repos';
