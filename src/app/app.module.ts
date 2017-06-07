@@ -8,10 +8,6 @@ import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search.component';
 import { UserViewComponent } from './userview/userview.component';
 import { appRoutes } from './approutes.routes';
-import { RepoComponent } from './repo/repo.component';
-import { FollowerComponent } from './follower/follower.component';
-import { FollowingComponent } from './following/following.component';
-import { StarComponent } from './star/star.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -19,10 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     SearchComponent,
     UserViewComponent,
-    RepoComponent,
-    FollowerComponent,
-    FollowingComponent,
-    StarComponent
   ],
   imports: [
     BrowserModule,
